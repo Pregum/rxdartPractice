@@ -1,4 +1,5 @@
 import 'package:rxdart_sample/buffer_count_sample.dart';
+import 'package:rxdart_sample/buffer_time_sample.dart';
 import 'package:rxdart_sample/combine_latest.sample.dart';
 import 'package:rxdart_sample/forkjoin_sample.dart';
 import 'package:rxdart_sample/merge_sample.dart';
@@ -18,9 +19,9 @@ import 'package:rxdart_sample/sequence_equal_sample.dart';
 import 'package:rxdart_sample/switch_latest_sample.dart';
 import 'package:rxdart_sample/zip_sample.dart';
 import 'package:rxdart_sample/buffer_sample.dart';
+import 'package:rxdart_sample/buffer_test_sample.dart';
 
 main(List<String> arguments) {
-
   // rxdart_sample.test_concat();
   // rxdart_sample.test_concatEager();
   // rxdart_sample.test_coldListen();
@@ -129,19 +130,27 @@ main(List<String> arguments) {
 
   // ------
   // below methods are written on zip_sample.dart
-  // studyZipTwo(); 
+  // studyZipTwo();
   // studyZipList();
   // studyZipTwoStream();
 
   // ------
   // below methods are written on buffer_sample.dart
   // studyBuffer();
-  // studyBufferTest();
   // studyBufferStream();
 
   // ------
   // below methods are written on buffer_count_sample.dart
   // studyBufferCount();
-  studyBufferCountStreamTransformer();
-  
+  // studyBufferCountStreamTransformer();
+
+  // ------
+  // below methods are written buffer_test_sample.dart
+  // studyBufferTest();
+  studyBufferTestStreamTransformer();
+
+  // ------
+  // below methods are written buffer_time_sample.dart
+  // studyBufferTime();
+  // studyBufferTimeStreamTransfor();
 }

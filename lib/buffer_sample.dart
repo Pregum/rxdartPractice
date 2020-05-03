@@ -34,13 +34,6 @@ Future studyBuffer() async {
 
 }
 
-// bufferTest
-// void studyBufferTest() async {
-//   Observable.fromIterable([1, 3, 4, 20, 80, 120, 12, 11, 150])
-//       .bufferTest((s) => s > 100)
-//       .listen(print);
-// }
-
 void studyBufferStream() async {
   // transform用に作成
   BufferStreamTransformer<int> transform =
