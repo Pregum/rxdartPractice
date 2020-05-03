@@ -2,9 +2,9 @@ import 'package:rxdart/rxdart.dart';
 
 /// rxdartのCombineLatestオペレータサンプル
 void studyCombineLatest() {
-  Observable.combineLatest2(
-    Observable.just('hello'),
-    Observable.fromIterable(['mike', 'jon']),
+  Rx.combineLatest2(
+    Stream.value('hello'),
+    Stream.fromIterable(['mike', 'jon']),
     (a, b) => '$a $b',
   ).listen(print, onDone: () => print('done.'));
 }
@@ -22,7 +22,7 @@ void studyCombineLatest2() async {
   PublishSubject sb1 = PublishSubject();
   PublishSubject sb2 = PublishSubject();
 
-  Observable.combineLatest2(sb1.stream, sb2.stream, (a, b) => 'a:$a b:$b')
+  Rx.combineLatest2(sb1.stream, sb2.stream, (a, b) => 'a:$a b:$b')
       .listen(print, onDone: () => print('done.'));
 
   print('sb1 onNext 1');
@@ -38,10 +38,10 @@ void studyCombineLatest2() async {
 }
 
 void studyCombineLatest3() {
-  Observable.combineLatest4(
-      Observable.just(1),
-      Observable.just(10),
-      Observable.just(100),
-      Observable.fromIterable([3, 33, 333]),
+  Rx.combineLatest4(
+      Stream.value(1),
+      Stream.value(10),
+      Stream.value(100),
+      Stream.fromIterable([3, 33, 333]),
       (a, b, c, d) => a + b + c + d).listen(print, onDone: () => print('done.'));
 }

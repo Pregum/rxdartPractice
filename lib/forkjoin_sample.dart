@@ -2,9 +2,9 @@ import 'package:rxdart/rxdart.dart';
 
 /// rxdartのForkJoinオペレータ
 void studyForkJoinTwo() {
-  Observable.forkJoin2(
-    Observable.just(1),
-    Observable.fromIterable([0, 2, 4]),
+  Rx.forkJoin2(
+    Stream.value(1),
+    Stream.fromIterable([0, 2, 4]),
     (a, b) => a + b,
   ).listen(
     print,
@@ -17,7 +17,7 @@ void studyForkJoinTwo2() async {
   PublishSubject<int> ps1 = PublishSubject<int>();
   PublishSubject<int> ps2 = PublishSubject<int>();
 
-  Observable.forkJoin2<int, int, int>(
+  Rx.forkJoin2<int, int, int>(
     ps1.stream,
     ps2.stream,
     (ps1, ps2) {

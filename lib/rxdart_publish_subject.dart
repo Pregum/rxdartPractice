@@ -114,7 +114,7 @@ void studyReplaySubject() async {
 
 void studyAsyncSubject() {
   var subject = PublishSubject<int>();
-  var asyncStream = Observable.fromFuture(subject.last);
+  var asyncStream = Stream.fromFuture(subject.last);
 
   subject
     ..add(1)

@@ -5,9 +5,9 @@ import 'package:rxdart/rxdart.dart';
 void studyDeferWithReusable() async {
   var count = 0;
   // reusableにtrueを設定すると、ブロードキャストになるので複数購読可能
-  var deferSubscription = Observable<String>.defer(() {
+  var deferSubscription = Rx.defer(() {
     print('hello world: ${++count}');
-    return Observable<String>.just('defer push.');
+    return Stream.value('defer push.');
   }, reusable: true);
 
   deferSubscription.listen((str) => print('listen1: $str'));
@@ -22,9 +22,9 @@ void studyDefer() async {
   var count = 0;
   // reusable引数をしていないため、reusableにはfalseが設定されている
   // その為シングルサブスクリプションなので、複数購読しようとするとエラーが発生する
-  var deferSubscription = Observable<String>.defer(() {
+  var deferSubscription = Rx.defer(() {
     print('hello world: ${++count}');
-    return Observable<String>.just('defer push.');
+    return Stream.value('defer push.');
   });
 
   deferSubscription.listen((str) => print('listen1: $str'));

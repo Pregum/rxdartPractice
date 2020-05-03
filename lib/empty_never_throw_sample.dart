@@ -2,7 +2,7 @@ import 'package:rxdart/rxdart.dart';
 
 /// rxdartのEmptyオペレータサンプル
 void studyEmpty() {
-  Observable.empty().listen((val) => print('liten: $val'),
+  Stream.empty().listen((val) => print('liten: $val'),
       onDone: () => print('done.'), onError: () => print('error occurs.'));
 }
 
@@ -16,7 +16,7 @@ void studyEmptyStream() {
 void studyNever() {
   // neverオペレータで無限の期間を表現できます。
   // timeoutオペレータをchainすることで、時間切れを確実に起こすことができます。
-  Observable<String>.never()
+  Rx.never()
       .timeout(Duration(seconds: 3),
           onTimeout: (err) => err.addError('time out error'))
       .listen((str) => print('listen: $str'),
@@ -34,7 +34,7 @@ void studyNeverStream() {
 
 /// rxdartのThrowオペレータサンプル
 void studyThrow() {
-  Observable.error('exception').listen(print,
+  Stream.error('exception').listen(print,
       onDone: () => print('done.'),
       onError: (e) => print('error occurs: $e'),
       // cancelOnErrorにtrueを指定していない場合、onDoneも実行される
