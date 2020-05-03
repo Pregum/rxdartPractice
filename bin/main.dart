@@ -22,7 +22,7 @@ import 'package:rxdart_sample/buffer_sample.dart';
 import 'package:rxdart_sample/buffer_test_sample.dart';
 
 main(List<String> arguments) {
-  // rxdart_sample.test_concat();
+  rxdart_sample.test_concat();
   // rxdart_sample.test_concatEager();
   // rxdart_sample.test_coldListen();
   // rxdart_sample.test_firstRx();
@@ -30,7 +30,6 @@ main(List<String> arguments) {
   // rxdart_sample.test_errorClose();
   // rxdart_sample.testDoListen();
   // rxdart_sample.testAsync();
-  // rxdart_sample.sample_tet();
 
   // -----
   // below methods are written on rxdart_observable.dart

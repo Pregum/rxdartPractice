@@ -2,11 +2,11 @@ import 'package:rxdart/rxdart.dart';
 
 /// rxdartのSequenceEqualオペレータサンプル
 void studySequenceEqual() {
-  Observable.sequenceEqual(Observable.fromIterable([1, 2, 3, 4, 5]),
-      Observable.fromIterable([1, 2, 3, 4, 5])).listen(print);
+  Rx.sequenceEqual(Stream.fromIterable([1, 2, 3, 4, 5]),
+      Stream.fromIterable([1, 2, 3, 4, 5])).listen(print);
 
-  Observable.sequenceEqual(Observable.fromIterable([1, 2, 3, 4, 5]),
-      Observable.fromIterable([1, 2, 3, 4])).listen(print);
+  Rx.sequenceEqual(Stream.fromIterable([1, 2, 3, 4, 5]),
+      Stream.fromIterable([1, 2, 3, 4])).listen(print);
 }
 
 /// Stream APIのSequenceEqualオペレータサンプル

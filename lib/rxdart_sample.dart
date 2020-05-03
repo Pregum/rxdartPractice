@@ -10,19 +10,19 @@ int calculate() {
 // concatは実行中のObservableが完了するまで、次のObservableが起動しないため
 // 'do on listen.'は２つ目のObservableが完了してから表示されます。
 void test_concat() {
-  Observable.concat([
-    Observable.just(0),
-    Observable.timer(3, Duration(seconds: 3)),
-    Observable.timer(2, Duration(seconds: 2))
+  Rx.concat([
+    Stream.value(0),
+    Rx.timer(3, Duration(seconds: 3)),
+    Rx.timer(2, Duration(seconds: 2))
         .doOnListen(() => print('do on listen from concat.')),
   ]).listen((i) => print('concat: $i'));
 }
 
 void test_coldListen() {
-  var tes = Observable.concat([
-    Observable.just(0),
-    Observable.timer(3, Duration(seconds: 3)),
-    Observable.timer(2, Duration(seconds: 2))
+  var tes = Rx.concat([
+    Stream.value(0),
+    Rx.timer(3, Duration(seconds: 3)),
+    Rx.timer(2, Duration(seconds: 2))
         .doOnListen(() => print('do on listen from concat.')),
   ]);
 
@@ -33,10 +33,10 @@ void test_coldListen() {
 // concatEagerはconcatではできなかった、複数のObservableを同時に起動することができます。
 // これにより'do on listen.'が実行後すぐ表示されます。
 void test_concatEager() {
-  Observable.concatEager([
-    Observable.just(0),
-    Observable.timer(3, Duration(seconds: 3)),
-    Observable.timer(2, Duration(seconds: 2))
+  Rx.concatEager([
+    Stream.value(0),
+    Rx.timer(3, Duration(seconds: 3)),
+    Rx.timer(2, Duration(seconds: 2))
         .doOnListen(() => print('do on listen from concatEager.')),
   ]).listen(
     (i) => print('concatEager: $i'),
@@ -49,7 +49,7 @@ void test_firstRx() async {
   PublishSubject<String> subject = PublishSubject<String>();
   print('isBroadCast: ${subject.isBroadcast}');
   // 観察(購読)可能なオブジェクト(Stream)用変数を作成
-  final Observable<String> observable = subject.stream;
+  final Stream<String> observable = subject.stream;
   // 観察役(購読者)その1を登録(作成)
   final StreamSubscription<String> observer1 = observable.listen(
       // 観察(購読)しているオブジェクト(Stream)から値が流れてきた時に行う処理

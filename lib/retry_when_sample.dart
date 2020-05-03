@@ -2,11 +2,11 @@ import 'package:rxdart/rxdart.dart';
 
 /// rxdartのRetryWhenオペレータサンプル
 void studyRetryWhen() {
-  Observable<int>.retryWhen(
-      () => Observable<int>.periodic(Duration(seconds: 1), (i) => (i))
+  Rx.retryWhen<int>(
+      () => Stream.periodic(Duration(seconds: 1), (i) => (i))
           .map((i) => i == 2 ? throw 'exception' : i), (e, s) {
     print('error catch. ');
-    return Observable<String>.timer(
+    return Rx.timer(
         'random value', Duration(milliseconds: 200));
   }).take(4).listen(print);
 }

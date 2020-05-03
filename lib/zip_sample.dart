@@ -6,7 +6,7 @@ void studyZipTwo() async {
   PublishSubject<int> ps1 = PublishSubject<int>();
   PublishSubject<int> ps2 = PublishSubject<int>();
   
-  Observable.zip2(
+  Rx.zip2(
     ps1.stream,
     ps2.stream,
     (ps1, ps2) {
@@ -34,10 +34,10 @@ void studyZipTwo() async {
   
 /// rxdartのForkJoinオペレータ
 void studyZipList() {
-  Observable.zipList([
-    Observable.fromIterable(['a']),
-    Observable.fromIterable(['b']),
-    Observable.fromIterable(['c', 'd', 'e']),
+  Rx.zipList([
+    Stream.fromIterable(['a']),
+    Stream.fromIterable(['b']),
+    Stream.fromIterable(['c', 'd', 'e']),
   ]).listen(
     print,
     onDone: () => print('done'),

@@ -2,7 +2,7 @@ import 'package:rxdart/rxdart.dart';
 
 /// BufferTestのサンプルコード
 Future studyBufferTest() async {
-  Observable.periodic(Duration(milliseconds: 100), (int i) => i)
+  Stream.periodic(Duration(milliseconds: 100), (int i) => i)
       .take(20)
       .bufferTest((i) => i % 2 == 0)
       .listen(print, onDone: () => print('on done.'));
@@ -11,7 +11,7 @@ Future studyBufferTest() async {
   await Future.delayed(Duration(milliseconds: 3000));
   print('--------------------');
 
-  Observable.periodic(Duration(milliseconds: 100), (int i) => i)
+  Stream.periodic(Duration(milliseconds: 100), (int i) => i)
       .take(11)
       .bufferTest((i) => i % 5 == 0)
       .listen(print, onDone: () => print('on done.'));

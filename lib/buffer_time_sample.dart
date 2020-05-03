@@ -2,7 +2,7 @@ import 'package:rxdart/rxdart.dart';
 
 Future studyBufferTime() async {
   // 100msecごとにカウントアップするストリームを生成する
-  Observable.periodic(Duration(milliseconds: 100), (int i) => i)
+  Stream.periodic(Duration(milliseconds: 100), (int i) => i)
       // 330msecごとにサンプリングする
       .bufferTime(Duration(milliseconds: 330))
       // 5要素取得する
@@ -15,7 +15,7 @@ Future studyBufferTime() async {
   print('--------------------------------------------------');
 
   // 500msecごとにカウントアップするストリームを生成する
-  Observable.periodic(Duration(milliseconds: 500), (int i) => i)
+  Stream.periodic(Duration(milliseconds: 500), (int i) => i)
       // 100msecごとにサンプリングする
       .bufferTime(Duration(milliseconds: 100))
       // 5要素取得する

@@ -4,11 +4,11 @@ import 'package:rxdart/rxdart.dart';
 void studyMerge() {
   // mergeは一度にすべてのObservableな値を発行するので、表示される順番はそれぞれのObservableな値次第です。
   // 最初にすべてのObservableな値が発行されるので、'do on listen.'は最初に表示されます。
-  Observable<int>.merge([
-    Observable<int>.just(1),
-    Observable<int>.timer(2, Duration(seconds: 2)),
-    Observable<int>.just(3),
-    Observable<int>.timer(4, Duration(seconds: 1))
+  Rx.merge([
+    Stream.value(1),
+    Rx.timer(2, Duration(seconds: 2)),
+    Stream.value(3),
+    Rx.timer(4, Duration(seconds: 1))
         .doOnListen(() => print('do on listen.')),
   ]).listen((i) => print('listen: $i'));
 }

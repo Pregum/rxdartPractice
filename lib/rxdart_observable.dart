@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 
 void studyObservable() {
-  final Observable<String> observable = Observable<String>.concat([
-    Observable<String>.fromIterable(<String>['hello', 'rxdart.']),
-    Observable<String>.just('just constructor'),
+  final Stream<String> observable = Rx.concat<String>([
+    Stream<String>.fromIterable(<String>['hello', 'rxdart.']),
+    Stream<String>.value('just constructor'),
   ]);
   var subscriber1 = observable.listen(print);
 }
@@ -18,8 +18,8 @@ void studyStream() {
       stream.map((i) => 'stream value: $i').last.asStream().listen(print);
 
   // rxdartのObservable<T>を使用した例
-  final Observable<int> observable =
-      Observable<int>.concat([Observable<int>.just(4), Observable.range(5, 7)]);
+  final Stream<int> observable =
+      Rx.concat<int>([Stream<int>.value(4), Rx.range(5, 7)]);
   // Observableのmap(内部ではStream.mapを使用)を適用し、購読者を登録
   var rxObserver = observable
       .map((i) => 'observable value: $i')
@@ -33,7 +33,7 @@ void studyJustV() {
   // 単一の値を含むStreamを作成
   final Stream<String> stream = Stream.value('stream.value');
   // 単一の値を含むObservableを作成
-  final Observable<String> observable = Observable.just('observable.just');
+  final Stream<String> observable = Stream.value('observable.just');
   print('subscriber create.');
   // 購読者を登録してから値が発行される。
   var streamSubscriber =
@@ -47,8 +47,8 @@ void studyRepeat() {
   final Stream<String> repeatStream = RepeatStream<String>(
       (int repeatIndex) => Stream.value('st count: $repeatIndex'), 3);
   // 指定された回数分Observableを作成するObservableを作成
-  final Observable<String> repeatObservable = Observable.repeat(
-      (int repeatIndex) => Observable.just('ob count: $repeatIndex'), 3);
+  final Stream<String> repeatObservable = Rx.repeat(
+      (int repeatIndex) => Stream.value('ob count: $repeatIndex'), 3);
   print('subscriber create.');
 
   var streamSubscriber =
@@ -61,7 +61,7 @@ void studyRange() async {
   // 指定された範囲内の整数のシーケンスを発行するStreamを作成
   final Stream<int> rangeStream = RangeStream(1, 3);
   // 指定された範囲内の整数のシーケンスを発行するObservableを作成
-  final Observable<int> rangeObservable = Observable.range(1, 3);
+  final Stream<int> rangeObservable = Rx.range(1, 3);
   print('subscriber create.');
   var streamSubscriber = rangeStream.listen((i) => print('stream: $i'),
       onDone: () => print('RangeStream done.'));
@@ -74,17 +74,17 @@ void studyRange() async {
   print('---------------------');
 
   // 発行される整数のシーケンスは、第1引数から第2引数に向かって発行される。
-  final Observable<int> inverseRangeObservable = Observable.range(3, 1);
+  final Stream<int> inverseRangeObservable = Rx.range(3, 1);
   var observableSubscriber2 = inverseRangeObservable.listen(print,
       onDone: () => print('Observable.range done.'));
 }
 
 void studyError() {
   // エラーを発行するStreamを作成します。
-  final Stream<String> errorStream = ErrorStream('ErrorStream output.');
+  final Stream<String> errorStream = Stream.error('ErrorStream output.');
   // エラーを発行するObservableを作成します。
-  final Observable<String> errorObservable =
-      Observable.error(Exception('Observable.error output.'));
+  final Stream<String> errorObservable =
+      Stream.error(Exception('Observable.error output.'));
   print('subscriber create.');
 
   var streamSubscriber =
@@ -98,8 +98,8 @@ void studyTimer() async {
   final Stream<DateTime> timerStream =
       TimerStream(DateTime.now(), Duration(seconds: 1));
   // 指定された時間経過すると、指定された値が発行されるObservablerを作成
-  final Observable<DateTime> timerObservable =
-      Observable.timer(DateTime.now(), Duration(seconds: 1));
+  final Stream<DateTime> timerObservable =
+      Rx.timer(DateTime.now(), Duration(seconds: 1));
   print('now: ${DateTime.now()}');
   // 発行される値は、Stream作成時に作成されている。
   var streamSubscriber = timerStream.listen((dt) => print('st listen: $dt'),

@@ -1,13 +1,13 @@
 import 'package:rxdart/rxdart.dart';
 
 Future studyBuffer() async {
-  Observable<int>.periodic(const Duration(milliseconds: 100), (i) {
+  Stream.periodic(const Duration(milliseconds: 100), (i) {
     // 100msecごとに値を生成する
     print('periodic: $i -- ${DateTime.now()}');
     return i;
   })
       // 150msecごとに購読したストリームをまとめる (型はObservable<List<int>>)
-      .buffer(Observable<int>.periodic(const Duration(milliseconds: 150), (j) {
+      .buffer(Stream.periodic(const Duration(milliseconds: 150), (j) {
         print('buffer: ${j * 150}msec -- ${DateTime.now()}');
         // dummy data
         return j;
@@ -21,14 +21,14 @@ Future studyBuffer() async {
   await Future.delayed(const Duration(milliseconds: 1000));
   print('-----------------------------------------');
 
-  Observable<int>.periodic(const Duration(milliseconds: 100), (i) {
+  Stream.periodic(const Duration(milliseconds: 100), (i) {
     print('periodic: $i -- ${DateTime.now()}');
     return i;
   })
       // 購読したストリームを8要素取得する
       .take(8)
       // 300msecごとにまとめる
-      .buffer(Observable.periodic(const Duration(milliseconds: 300)))
+      .buffer(Stream.periodic(const Duration(milliseconds: 300)))
       // List<int>を購読する
       .listen((data) => print('listen: $data'), onDone: () => print('done.'));
 
