@@ -29,17 +29,13 @@ void studyStream() {
         ..onDone(() => print('rxObserver done.'));
 }
 
-void studyJustV() {
+void studyJustValue() {
   // 単一の値を含むStreamを作成
   final Stream<String> stream = Stream.value('stream.value');
-  // 単一の値を含むObservableを作成
-  final Stream<String> observable = Stream.value('observable.just');
   print('subscriber create.');
   // 購読者を登録してから値が発行される。
   var streamSubscriber =
       stream.listen(print, onDone: () => print('stream.value done.'));
-  var observableSubscriber =
-      observable.listen(print, onDone: () => print('observable.just done.'));
 }
 
 void studyRepeat() {
@@ -54,8 +50,18 @@ void studyRepeat() {
   var streamSubscriber =
       repeatStream.listen(print, onDone: () => print('RepeatStream done.'));
   var observableSubscriber = repeatObservable.listen(print,
-      onDone: () => print('Observable.repeat done.'));
+      onDone: () => print('Rx.repeat done.'));
 }
+// 実行結果
+// subscriber create.
+// st count: 0
+// ob count: 0
+// st count: 1
+// ob count: 1
+// st count: 2
+// ob count: 2
+// RepeatStream done.
+// Rx.repeat done.
 
 void studyRange() async {
   // 指定された範囲内の整数のシーケンスを発行するStreamを作成
@@ -67,7 +73,7 @@ void studyRange() async {
       onDone: () => print('RangeStream done.'));
   var observableSubscriber = rangeObservable.listen(
       (i) => print('observable: $i'),
-      onDone: () => print('Observable.range done.'));
+      onDone: () => print('Rx.range done.'));
 
   // 区切るために少し待つ
   await Future.delayed(Duration(milliseconds: 500));
@@ -76,38 +82,59 @@ void studyRange() async {
   // 発行される整数のシーケンスは、第1引数から第2引数に向かって発行される。
   final Stream<int> inverseRangeObservable = Rx.range(3, 1);
   var observableSubscriber2 = inverseRangeObservable.listen(print,
-      onDone: () => print('Observable.range done.'));
+      onDone: () => print('inv Rx.range done.'));
 }
+// 実行結果
+// subscriber create.
+// stream: 1
+// observable: 1
+// stream: 2
+// observable: 2
+// stream: 3
+// observable: 3
+// RangeStream done.
+// Rx.range done.
+// ---------------------
+// 3
+// 2
+// 1
+// inv Rx.range done.
 
 void studyError() {
   // エラーを発行するStreamを作成します。
-  final Stream<String> errorStream = Stream.error('ErrorStream output.');
-  // エラーを発行するObservableを作成します。
-  final Stream<String> errorObservable =
-      Stream.error(Exception('Observable.error output.'));
+  final Stream<String> errorStream = Stream.error('Stream.error output.');
   print('subscriber create.');
 
   var streamSubscriber =
       errorStream.listen(print, onError: (e) => print('stream error: $e'));
-  var observableSubscriber = errorObservable.listen(print,
-      onError: (e) => print('observable occurs: $e'));
 }
+// 実行結果
+// subscriber create.
+// stream error: Stream.error output.
 
 void studyTimer() async {
   // 指定された時間経過すると、指定された値が発行されるStreamを作成
   final Stream<DateTime> timerStream =
-      TimerStream(DateTime.now(), Duration(seconds: 1));
+      TimerStream(DateTime.now(), Duration(seconds: 2));
+      print('create stream that listen 2sec after.');
   // 指定された時間経過すると、指定された値が発行されるObservablerを作成
   final Stream<DateTime> timerObservable =
-      Rx.timer(DateTime.now(), Duration(seconds: 1));
+      Rx.timer(DateTime.now(), Duration(seconds: 5));
+      print('create stream that listen 5sec after.');
   print('now: ${DateTime.now()}');
   // 発行される値は、Stream作成時に作成されている。
   var streamSubscriber = timerStream.listen((dt) => print('st listen: $dt'),
-      onDone: () => print('TimerStream done.'));
+      onDone: () => print('TimerStream done. -- now: ${DateTime.now()}'));
   // 発行される値は、Observable作成時に作成されている。
   var observableSubscriber = timerObservable.listen(
       (dt) => print('ob listen: $dt'),
-      onDone: () => print('Observable.timer done.'));
-  await Future.delayed(Duration(seconds: 1));
-  print('now: ${DateTime.now()}');
+      onDone: () => print('Rx.timer done. -- now: ${DateTime.now()}'));
 }
+// 実行結果
+// create stream that listen 2sec after.
+// create stream that listen 5sec after.
+// now: 2020-05-04 10:41:35.083006
+// st listen: 2020-05-04 10:41:35.082008
+// TimerStream done. -- now: 2020-05-04 10:41:37.097631
+// ob listen: 2020-05-04 10:41:35.083006
+// Rx.timer done. -- now: 2020-05-04 10:41:40.092854

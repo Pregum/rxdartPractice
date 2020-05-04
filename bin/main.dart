@@ -22,7 +22,7 @@ import 'package:rxdart_sample/buffer_sample.dart';
 import 'package:rxdart_sample/buffer_test_sample.dart';
 
 main(List<String> arguments) {
-  rxdart_sample.test_concat();
+  // rxdart_sample.test_concat();
   // rxdart_sample.test_concatEager();
   // rxdart_sample.test_coldListen();
   // rxdart_sample.test_firstRx();
@@ -146,7 +146,7 @@ main(List<String> arguments) {
   // ------
   // below methods are written buffer_test_sample.dart
   // studyBufferTest();
-  studyBufferTestStreamTransformer();
+  // studyBufferTestStreamTransformer();
 
   // ------
   // below methods are written buffer_time_sample.dart
