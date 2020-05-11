@@ -9,7 +9,13 @@ void studyConcatEager() {
         .doOnListen(() => print('do on listen.')),
   ]).listen((i) => print('listen: $i'));
 }
-
+// 実行結果
+// do on listen.
+// listen: 1
+// listen: 2
+// listen: 3
+// listen: 4
+  
 void studyConcatEagerStream() {
   ConcatEagerStream<int>([
     Stream<int>.value(1),
@@ -19,3 +25,9 @@ void studyConcatEagerStream() {
         .transform(DoStreamTransformer(onListen: () => print('do on listen.'))),
   ]).listen((i) => print('listen: $i'));
 }
+// 実行結果
+// do on listen.
+// listen: 1
+// listen: 2
+// listen: 3
+// listen: 4
