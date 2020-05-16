@@ -22,7 +22,15 @@ void studyRetry() async {
           onError: (e, s) => print('error: $e'),
           cancelOnError: true);
 }
-
+// 実行結果
+// 1
+// done.
+// -----
+// listen: 1
+// listen: 2
+// listen: 3
+// error: Received an error after attempting 2 retries
+  
 /// Stream APIのRetryオペレータサンプル
 void studyRetryStream() async {
   RetryStream<int>(() => Stream<int>.value(1))
@@ -43,3 +51,11 @@ void studyRetryStream() async {
     cancelOnError: true,
   );
 }
+// 実行結果
+// 1
+// done.
+// -----
+// listen: 1
+// listen: 2
+// listen: 3
+// error: Received an error after attempting 2 retries
