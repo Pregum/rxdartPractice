@@ -103,7 +103,7 @@ main(List<String> arguments) {
 
   // ------
   // below methods are written on sequence_equal_sample.dart
-  // studySequence();
+  // studySequenceEqual();
   // studySequenceEqualStream();
 
   // ------

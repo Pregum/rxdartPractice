@@ -8,6 +8,9 @@ void studySequenceEqual() {
   Rx.sequenceEqual(Stream.fromIterable([1, 2, 3, 4, 5]),
       Stream.fromIterable([1, 2, 3, 4])).listen(print);
 }
+// 実行結果
+// false
+// true
 
 /// Stream APIのSequenceEqualオペレータサンプル
 void studySequenceEqualStream() {
@@ -17,3 +20,6 @@ void studySequenceEqualStream() {
   SequenceEqualStream(Stream.fromIterable([1, 2, 3, 4, 5]),
       Stream.fromIterable([1, 2, 3, 4])).listen(print);
 }
+// 実行結果
+// false
+// true
