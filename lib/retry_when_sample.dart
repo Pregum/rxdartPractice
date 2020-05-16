@@ -10,6 +10,12 @@ void studyRetryWhen() {
         'random value', Duration(milliseconds: 200));
   }).take(4).listen(print);
 }
+// 実行結果
+// 0
+// 1
+// error catch. 
+// 0
+// 1
 
 /// Stream APIのRetryWhenオペレータサンプル
 void studyRetryWhenStream() {
@@ -20,3 +26,9 @@ void studyRetryWhenStream() {
     return TimerStream<String>('random value', Duration(milliseconds: 200));
   }).take(4).listen(print);
 }
+// 実行結果
+// 0
+// 1
+// error catch. 
+// 0
+// 1
