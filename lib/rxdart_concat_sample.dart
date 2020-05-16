@@ -1,5 +1,6 @@
 import 'package:rxdart/rxdart.dart';
 
+// rxdartのConcatオペレータ
 void studyConcat() {
   // concatは実行中のStreamが完了するまで、次のStreamが購読されないため
   // 'do on listen.'は3つ目のStreamが完了してから表示されます。
@@ -20,6 +21,7 @@ void studyConcat() {
 // do on listen.
 // listen: 4
 
+// Stream APIのconcatオペレータ
 void studyConcatStream() {
   ConcatStream<int>([
     Stream<int>.value(1),

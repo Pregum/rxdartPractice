@@ -22,3 +22,10 @@ void studyPeriodicStream() {
       .take(5)
       .listen(print, onDone: () => print('done.'));
 }
+// 実行結果
+// 3
+// 4
+// 5
+// 6
+// 7
+// done.
