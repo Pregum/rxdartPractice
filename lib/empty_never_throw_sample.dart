@@ -22,6 +22,8 @@ void studyNever() {
       .listen((str) => print('listen: $str'),
           onError: (err) => print('error listen: $err'), cancelOnError: true);
 }
+// 実行結果
+// error listen: time out error
 
 /// Stream APIのNeverオペレータサンプル
 void studyNeverStream() {
@@ -31,6 +33,9 @@ void studyNeverStream() {
       .listen((str) => print('listen: $str'),
           onError: (err) => print('error listen: $err'), cancelOnError: true);
 }
+// 実行結果
+// error listen: time out error
+
 
 /// rxdartのThrowオペレータサンプル
 void studyThrow() {
