@@ -5,7 +5,7 @@ void studyForkJoinTwo() {
   Rx.forkJoin2(
     Stream.value(1),
     Stream.fromIterable([0, 2, 4]),
-    (a, b) => a + b,
+    (int a, int b) => a + b,
   ).listen(
     print,
     onDone: () => print('done'),
@@ -30,15 +30,15 @@ void studyForkJoinTwo2() async {
   );
 
   print('ps1 onNext -- 1');
-  await ps1.add(1);
+  ps1.add(1);
   print('ps2 onNext -- 11');
-  await ps2.add(11);
+  ps2.add(11);
   print('ps2 onNext -- 12');
-  await ps2.add(12);
+  ps2.add(12);
   print('ps2 onNext -- 13');
-  await ps2.add(13);
+  ps2.add(13);
   print('ps1 onNext -- 2');
-  await ps1.add(2);
+  ps1.add(2);
   await ps1.close();
   await ps2.close();
 }
@@ -48,7 +48,7 @@ void studyForkJoinTwoStream() {
   ForkJoinStream.combine2(
     Stream.value(1),
     Stream.fromIterable([0, 2, 4]),
-    (a, b) => a + b,
+    (int a, int b) => a + b,
   ).listen(
     print,
     onDone: () => print('done.'),
