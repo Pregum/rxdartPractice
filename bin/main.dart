@@ -1,6 +1,8 @@
 import 'package:rxdart_sample/buffer_count_sample.dart';
 import 'package:rxdart_sample/buffer_time_sample.dart';
 import 'package:rxdart_sample/combine_latest.sample.dart';
+import 'package:rxdart_sample/concat_with_sample.dart';
+import 'package:rxdart_sample/debounce_sample.dart';
 import 'package:rxdart_sample/forkjoin_sample.dart';
 import 'package:rxdart_sample/merge_sample.dart';
 import 'package:rxdart_sample/empty_never_throw_sample.dart';
@@ -152,4 +154,12 @@ main(List<String> arguments) {
   // below methods are written buffer_time_sample.dart
   // studyBufferTime();
   // studyBufferTimeStreamTransfor();
+
+  // ------
+  // below method is written concat_with_sample.dart
+  // studyConcatWith();
+
+  // ------
+  // below method is written debounce_sample.dart
+  studyDebounce();
 }
